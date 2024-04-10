@@ -33,8 +33,8 @@ phi_eir_rel <- function(eir, ft){
 
   list(
     EIR = eir, ft = ft,
-    S = S, D = D, A = A, T = T, phi = phi, b = b, n = eq$delayGam,
-    m = eq$mv0, Sv = eq$init_Sv, Ev = eq$init_Ev, Iv = eq$init_Iv, mu = eq$mu0,
+    S = S, D = D, A = A, T = T, phi = phi, b = b,
+    m = eq$mv0, Sv = eq$init_Sv, Ev = eq$init_Ev, Iv = eq$init_Iv,
     n = eq$delayGam,
     mu = eq$mu0,
     rD = eq$rD,

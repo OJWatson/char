@@ -1,0 +1,19 @@
+Package: char
+Type: Package
+Title: Chosen artemisinin resistance
+Version: 0.1.0
+Authors@R: c(
+  person("OJ", "Watson", email = "o.watson15@imperial.ac.uk", role = c("aut", "cre"))
+  )
+Description: Choosing how artemisinin resitance may spread under different treatment failure phenotypes.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    here,
+    cowplot,
+    ggplot2,
+    magrittr
+Suggests:
+    devtools
+RoxygenNote: 7.1.2

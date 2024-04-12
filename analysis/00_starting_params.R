@@ -24,6 +24,11 @@ phi_eir_rel <- function(eir, ft){
     eq$den
   )
 
+  c_A <- weighted.mean(
+    apply(eq$cA_eq, 1, weighted.mean, eq$het_wt),
+    eq$den
+  )
+
   b <- eq$b0 * ((1 - eq$b1)/(1 + (b/eq$IB0)^eq$kB) + eq$b1)
 
   S <- sum(eq$init_S)
@@ -34,7 +39,8 @@ phi_eir_rel <- function(eir, ft){
   list(
     EIR = eir, ft = ft,
     S = S, D = D, A = A, T = T, phi = phi, b = b,
-    m = eq$mv0, Sv = eq$init_Sv, Ev = eq$init_Ev, Iv = eq$init_Iv,
+    m = eq$mv0, Sv = eq$init_Sv, Ev = eq$init_Ev, Iv = eq$init_Iv, a = eq$av0,
+    cA = c_A, cD = eq$cD, cT = eq$cT,
     n = eq$delayGam,
     mu = eq$mu0,
     rD = eq$rD,

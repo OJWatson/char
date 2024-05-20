@@ -63,3 +63,7 @@ starting_params <- lapply(split(pars, pars$n),
 saveRDS(starting_params, "analysis/data/derived/starting_params.rds")
 write.csv(starting_params, "analysis/data/derived/starting_params.csv")
 
+
+# Example plots and relationships
+starting_params %>% ggplot(aes(EIR, D+A+T, color = as.factor(ft), group = as.factor(ft))) + geom_line() + theme_bw() + ylim(c(0,1)) + scale_color_discrete("ft")
+starting_params %>% ggplot(aes(EIR, D+A+T, color = as.factor(ft), group = as.factor(ft))) + geom_line() + theme_bw() + ylim(c(0,1)) + scale_color_discrete("ft") + scale_x_log10()

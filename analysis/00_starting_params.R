@@ -36,17 +36,20 @@ phi_eir_rel <- function(eir, ft){
   A <- sum(eq$init_A + eq$init_U)
   T <- sum(eq$init_T)
 
+  lambda_v_scale <- ((eq$av0 * (c_A*A + eq$cD*D + eq$cT*T))/eq$FOIv_eq)
+
   list(
     EIR = eir, ft = ft,
     S = S, D = D, A = A, T = T, phi = phi, b = b,
     m = eq$mv0, Sv = eq$init_Sv, Ev = eq$init_Ev, Iv = eq$init_Iv, a = eq$av0,
     cA = c_A, cD = eq$cD, cT = eq$cT,
-    n = eq$delayGam,
+    n = eq$delayMos,
     mu = eq$mu0,
     rD = eq$rD,
     rA = eq$rA,
     rT_S = eq$rT,
-    rT_R = eq$rT*2
+    rT_R = eq$rT*2,
+    lambda_v_scale = lambda_v_scale
   ) %>%
     as.data.frame()
 
@@ -63,6 +66,7 @@ starting_params <- lapply(split(pars, pars$n),
 saveRDS(starting_params, "analysis/data/derived/starting_params.rds")
 write.csv(starting_params, "analysis/data/derived/starting_params.csv")
 
+starting_params <- readRDS("analysis/data/derived/starting_params.rds")
 
 # Example plots and relationships
 starting_params %>% ggplot(aes(EIR, D+A+T, color = as.factor(ft), group = as.factor(ft))) + geom_line() + theme_bw() + ylim(c(0,1)) + scale_color_discrete("ft")

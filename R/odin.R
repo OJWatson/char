@@ -111,7 +111,7 @@ model_ <- R6::R6Class(
     },
 
     run = function(t, y = NULL, ..., use_names = TRUE) {
-      private$odin$wrapper_run_ode(
+      private$odin$wrapper_run_delay(
         self, private, t, y, ..., use_names = use_names)
     }
   ))

@@ -34,14 +34,12 @@ deriv(TR) <- S * Lambda_R * Phi * fT +
 ## Mosquito Equations
 deriv(Sv) <- e - (Lambda_v_s + Lambda_v_r) * Sv - mu * Sv
 
-#delayed_Lambda_v_s_Sv <- delay(Lambda_v_s * Sv * exp(-mu * n), n)
-delayed_Lambda_v_s_Sv <- Lambda_v_s * Sv * exp(-mu * n)
+delayed_Lambda_v_s_Sv <- delay(Lambda_v_s * Sv * exp(-mu * n), n)
 
 deriv(Ev_s) <- Lambda_v_s * Sv - delayed_Lambda_v_s_Sv - mu * Ev_s
 deriv(Iv_s) <- delayed_Lambda_v_s_Sv - mu * Iv_s
 
-#delayed_Lambda_v_r_Sv <- delay(Lambda_v_r * Sv * exp(-mu * n), n)
-delayed_Lambda_v_r_Sv <- Lambda_v_r * Sv * exp(-mu * n)
+delayed_Lambda_v_r_Sv <- delay(Lambda_v_r * Sv * exp(-mu * n), n)
 
 deriv(Ev_r) <- Lambda_v_r * Sv - delayed_Lambda_v_r_Sv - mu * Ev_r
 deriv(Iv_r) <- delayed_Lambda_v_r_Sv - mu * Iv_r

@@ -8,7 +8,7 @@
 #'
 
 run_simple_SEEIR_model <- function(pars,
-                                   time_period = 60000) {
+                                   time_period = 5000) {
 
 
   # Running the Model

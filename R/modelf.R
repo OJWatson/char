@@ -7,7 +7,7 @@
 #' @export
 #'
 
-run_simple_SEEIR_model <- function(pars,
+run_model <- function(pars,
                                    time_period = 55000,
                                    ton = 5000,
                                    toff = 50000,
@@ -17,13 +17,13 @@ run_simple_SEEIR_model <- function(pars,
                                    rTR_true = 0.05) {
 
   pars$lambda_v_scale <- 1
+  pars$rTR_true <- rTR_true
 
   # Running the Model
   mod <- LC_model$new(user = form_pars(pars, res_start = res_start, ton = ton,toff=toff) %>%
                         as.data.frame() %>%
                         mutate(init_res = init_res) %>%
-                        mutate(res_time = res_time) %>%
-                        mutate(rTR_true = rTR_true), unused_user_action = "ignore")
+                        mutate(res_time = res_time), unused_user_action = "ignore")
   t <- seq(from = 0, to = time_period, 1)
   results <- mod$run(t, t_crit = c(250,500,750)) %>% as.data.frame()
 
@@ -56,7 +56,7 @@ form_pars <- function(pars, res_start = 0,ton=2000,toff=4000){
        rA= pars$rA,
        rD= pars$rD,
        res_start=res_start,
-       rTR_true= pars$rT_R,
+       rTR_true= pars$rTR_true,
        rTs= pars$rT_S,
        S0= pars$S,
        Sv0= pars$Sv,

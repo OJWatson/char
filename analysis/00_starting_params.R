@@ -1,6 +1,6 @@
 library(magenta)
 library(tidyverse)
-library(ICDDM)
+library(ICDMM)
 
 EIRs <- c(0.25,0.5,0.75,1,1.5,2,2.5,3,3.5,4,4.5,5,6,7,8,9,10,
           15,20,30,50,100,200)
@@ -63,7 +63,7 @@ equilibrium_init_create <- function(par) {
 
 phi_eir_rel <- function(eir, ft){
 
-  mpl <- ICDMM::model_param_list_create(rho=0, rU = Inf, rP = Inf, sigma2 = 0)
+  mpl <- ICDMM::model_param_list_create(rho=0, rA = 1/(300), rU = Inf, rP = Inf, sigma2 = 0)
   eq <- ICDMM::equilibrium_init_create(
     age_vector=c(0,0.25,0.5,0.75,1,1.25,1.5,1.75,2,3.5,5,7.5,10,15,20,30,40,50,60,70,80),
     EIR=eir,ft=ft,

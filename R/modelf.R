@@ -8,19 +8,26 @@
 #'
 
 run_simple_SEEIR_model <- function(pars,
-                                   time_period = 5000) {
+                                   time_period = 55000,
+                                   ton = 5000,
+                                   toff = 50000,
+                                   init_res = 0.2,
+                                   res_time = 1000,
+                                   res_start = 0.2,
+                                   rTR_true = 0.05) {
 
+  pars$lambda_v_scale <- 1
 
   # Running the Model
-  mod <- model$new(user = form_pars(pars, res_start = 0.5, ton = 500,toff=1500), unused_user_action = "ignore")
+  mod <- LC_model$new(user = form_pars(pars, res_start = res_start, ton = ton,toff=toff) %>%
+                        as.data.frame() %>%
+                        mutate(init_res = init_res) %>%
+                        mutate(res_time = res_time) %>%
+                        mutate(rTR_true = rTR_true), unused_user_action = "ignore")
   t <- seq(from = 0, to = time_period, 1)
-  results <- mod$run(t) %>% as.data.frame()
-  plot(results$res)
+  results <- mod$run(t, t_crit = c(250,500,750)) %>% as.data.frame()
 
-  # Summarise inputs
-  out <- list(output = results, parameters = parameters, model = mod)
-  out <- structure(out, class = "squire_simulation")
-  return(out)
+  return(results)
 }
 
 

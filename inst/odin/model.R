@@ -4,32 +4,36 @@ deriv(S) <- -S * Lambda_s * (Phi * fT + Phi * (1 - fT) + (1 - Phi)) -
   Ts * rTs + As * rA + AR * rA + TR * rTR
 
 deriv(Ds) <- S * Lambda_s * Phi * (1 - fT) +
+  Lambda_s * AR * Phi * (1 - fT) -
   Lambda_s * As * Phi * (1 - fT) -
   Ds * rD
 
 deriv(As) <- S * Lambda_s * (1 - Phi) +
   Ds * rD -
   Lambda_s * As * Phi * (1 - fT) -
-  Lambda_s * As * Phi * fT -
+  Lambda_R * As * Phi * (1 - fT) -
+  #Lambda_s * As * Phi * fT -
   As * rA
 
 deriv(Ts) <- S * Lambda_s * Phi * fT +
-  Lambda_s * As * Phi * fT -
-  Ts * rTs
+  #Lambda_s * As * Phi * fT -
+  -Ts * rTs
 
 deriv(DR) <- S * Lambda_R * Phi * (1 - fT) +
+  Lambda_R * As * Phi * (1 - fT) -
   Lambda_R * AR * Phi * (1 - fT) -
   DR * rD
 
 deriv(AR) <- S * Lambda_R * (1 - Phi) +
   DR * rD -
   Lambda_R * AR * Phi * (1 - fT) -
-  Lambda_R * AR * Phi * fT -
+  Lambda_s * AR * Phi * (1 - fT) -
+  #Lambda_R * AR * Phi * fT -
   AR * rA
 
 deriv(TR) <- S * Lambda_R * Phi * fT +
-  Lambda_R * AR * Phi * fT -
-  TR * rTR
+  #Lambda_R * AR * Phi * fT -
+  -TR * rTR
 
 ## Mosquito Equations
 deriv(Sv) <- e - (Lambda_v_s + Lambda_v_r) * Sv - mu * Sv

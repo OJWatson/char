@@ -15,10 +15,12 @@ Imports:
     ggplot2,
     magrittr,
     odin,
+    ICDMM,
     dde
 Suggests:
     devtools
 Remotes: 
-    mrc-ide/odin
-    mrc-ide/dde
+    mrc-ide/odin,
+    mrc-ide/dde,
+    mrc-ide/deterministic-malaria-model
 RoxygenNote: 7.2.3
